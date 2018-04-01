@@ -1,0 +1,74 @@
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <p>
+        Search:
+        <input ng-model="$ctrl.query" />
+      </p>
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+      <ul class="rules">
+      <table>
+        <tr>
+          <th>Record Type</th>
+          <th>Search Word</th>
+          <th>Replace Word</th>
+          <th>Note</th>
+          <th>Table Name</th>
+          <th>Column Name</th>
+          <th>Source</th>
+        </tr>
+        <tr ng-repeat="rule in $ctrl.rules | filter:$ctrl.query">
+          <td><input type="text" ng-model="rule.REC_TYPE" required/></td>
+          <td><input type="text" ng-model="rule.SEARCH_WORD" required/></td>
+          <td><input type="text" ng-model="rule.REPLACE_WORD"/></td>
+          <td><input type="text" ng-model="rule.NOTE"/></td>
+          <td><input type="text" ng-model="rule.TABLE_NAME"/></td>
+          <td><input type="text" ng-model="rule.COLUMN_DATA"/></td>
+          <td><input type="text" ng-model="rule.SOURCE"/></td>
+          <td><a href="" data-ng-click="editPerson(rule.REC_NO)">Edit</a> |
+              <a href="" data-ng-click="deletePerson(rule.REC_NO)">Delete</a>
+          </td>
+        </tr>
+      </ul>
+      <h3>Rules Update</h3>
+                <input type="hidden" data-ng-model="newRule.Id" />
+                <b>Record Type:</b>
+                <input type="text" name="Name" id="Name" data-ng-model="newRule.REC_TYPE" placeholder="Record Type" required />
+                <br/>
+                <b>Search Word:</b>
+                <input type="text" name="search_word" id="search_word" data-ng-model="newRule.SEARCH_WORD" placeholder="Search Word" required />
+                <b>Replace Word:</b>
+                <input type="text" name="replace_word" id="replace_word" data-ng-model="newRule.REPLACE_WORD" placeholder="Replace Word" required />
+                <b>Note:</b>
+                <input type="text" name="note" id="note" data-ng-model="newRule.NOTE" placeholder="Note" required />
+                <br/>
+                <b>Table Name:</b>
+                <input type="text" name="table_name" id="table_name" data-ng-model="newRule.TABLE_NAME" placeholder="Table Name" required/>
+                <b>Column Name:</b>
+                <input type="text" name="column_data" id="column_data" data-ng-model="newRule.COLUMN_DATA" placeholder="Column Name" required />
+                <b>Source:</b>
+                <input type="text" name="source" id="source" data-ng-model="newRule.SOURCE" placeholder="Source" required />
+
+                <br/>
+                <input type="button" value="Save" data-ng-click="createPerson()" />
+                <input type="button" value="Update" data-ng-click="updatePerson()" />
+                <br/>
+                <p>{{status}}</p>
+    </div>
+  </div>
+</div>
